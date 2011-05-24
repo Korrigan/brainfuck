@@ -30,11 +30,8 @@ static const struct {
 
 int		exec_instr(struct s_bf *vm, char instr)
 {
-  for (size_t i = 0; i <= T_HANDLER_SZ; i++)
+  for (size_t i = 0; i < T_HANDLER_SZ; i++)
    if (instr == g_handler[i].c)
-     {
-       return (g_handler[i].f(vm));
-       printf("p = %d\nmem[p] = %d (%c)\ninstr = %c\n", vm->p, vm->mem[vm->p], vm->mem[vm->p], instr);
-     }
+     return (g_handler[i].f(vm));
   return (0);
 }

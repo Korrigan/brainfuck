@@ -11,14 +11,14 @@
 #ifndef		BRAINFUCK_H_
 # define	BRAINFUCK_H_
 
-# define	MEM_SIZE	30000
+# define	MEM_SIZE		1000000
+# define	MAX_RECURSION_DEPTH	4096
 
 struct		s_bf
 {
   int		fd;
   unsigned	p;
-  char		mem[MEM_SIZE];
-  char		*loop;
+  int		*mem;
 };
 
 int		exec_instr(struct s_bf *vm, char instr);

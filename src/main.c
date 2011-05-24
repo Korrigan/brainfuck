@@ -35,7 +35,8 @@ int		main(int ac, char **av)
   struct s_bf	vm;
 
   memset(&vm, 0, sizeof(vm));
-  if (get_fd(ac, av, &vm))
+  if (!(vm.mem = (int *)calloc(MEM_SIZE, sizeof(int)))
+      || get_fd(ac, av, &vm))
     goto err;
   while ((rd = read(vm.fd, &instr, 1)) > 0)
     if (exec_instr(&vm, instr))
@@ -43,6 +44,7 @@ int		main(int ac, char **av)
   if ((rd == -1)
       || (vm.fd && close(vm.fd) == -1))
     goto err;
+  free(vm.mem);
   return (EXIT_SUCCESS);
  err:
   perror(program_invocation_short_name);

@@ -18,7 +18,7 @@ SRCF=		main.c \
 		p_dec.c \
 		wr.c \
 		rd.c \
-		loop.c \
+		loop.c
 
 SRC=		$(addprefix src/, $(SRCF))
 OBJ=		$(SRC:.c=.o)
