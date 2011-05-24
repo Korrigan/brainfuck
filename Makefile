@@ -11,6 +11,7 @@
 NAME=		bf
 
 SRCF=		main.c \
+		prompt.c \
 		exec_instr.c \
 		inc.c \
 		dec.c \
@@ -26,7 +27,7 @@ OBJ=		$(SRC:.c=.o)
 CC=		gcc
 RM=		@rm -fv
 
-CFLAGS+=	-W -Wall -Wextra -std=c99 -O2
+CFLAGS+=	-W -Wall -Wextra -std=c99 -g3
 CFLAGS+=	-Iinc -D_GNU_SOURCE
 
 $(NAME):	$(OBJ)

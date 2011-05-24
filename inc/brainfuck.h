@@ -22,5 +22,6 @@ struct		s_bf
 };
 
 int		exec_instr(struct s_bf *vm, char instr);
+char		prompt(const struct s_bf *vm, const char *req);
 
 #endif	/*	!BRAINFUCK_H_ */

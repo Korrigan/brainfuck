@@ -53,10 +53,9 @@ int		loop(struct s_bf *vm)
 {
   char		*loop = NULL;
   char		instr;
-  int		rd;
   int		count = 1;
 
-  while (count && ((rd = read(vm->fd, &instr, 1)) == 1))
+  while (count && (instr = prompt(vm, "]")) > 0)
     {
       if (!(loop = append(loop, instr)))
 	return (1);
@@ -65,7 +64,7 @@ int		loop(struct s_bf *vm)
       else if (instr == ']')
 	count--;
     }
-  if (rd == -1)
+  if (instr == -1)
     return (1);
   exec_loop(vm, loop);
   free(loop);

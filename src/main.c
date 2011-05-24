@@ -30,7 +30,6 @@ static int	get_fd(int ac, char **av, struct s_bf *vm)
 
 int		main(int ac, char **av)
 {
-  int		rd;
   char		instr;
   struct s_bf	vm;
 
@@ -38,10 +37,10 @@ int		main(int ac, char **av)
   if (!(vm.mem = (int *)calloc(MEM_SIZE, sizeof(int)))
       || get_fd(ac, av, &vm))
     goto err;
-  while ((rd = read(vm.fd, &instr, 1)) > 0)
+  while ((instr = prompt(&vm, NULL)) != -1)
     if (exec_instr(&vm, instr))
       goto err;
-  if ((rd == -1)
+  if ((instr == -1)
       || (vm.fd && close(vm.fd) == -1))
     goto err;
   free(vm.mem);
